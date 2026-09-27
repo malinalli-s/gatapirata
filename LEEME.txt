@@ -1,0 +1,14 @@
+GATA PIRATA — SITIO COMPLETO
+
+1. Descomprime esta carpeta.
+2. Abre la carpeta en VS Code y ejecuta index.html con Live Server.
+   Alternativa: abre una terminal en la carpeta y ejecuta:
+   python -m http.server 8000
+   Luego visita http://localhost:8000
+3. Pulsa Escuchar o agrega una canción.
+
+No requiere npm ni compilación. Usa un servidor local para el analizador BPM.
+Las fuentes de Adobe Fonts y Google Fonts requieren internet.
+Las canciones cargadas y sus datos solo duran durante la sesión.
+El sitio procesa audio localmente; no incluye servidor de streaming ni firmware ESP32.
+Para la ESP32, abre Conectar báculo y consulta la guía.

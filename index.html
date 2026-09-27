@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="es"
+  ><head
+    ><meta charset="utf-8" /><meta
+      name="viewport"
+      content="width=device-width,initial-scale=1" /><title
+      >Gata Pirata — Radio en movimiento</title
+    ><meta
+      name="description"
+      content="Prueba de radio reactiva: mueve el báculo, transforma la música." /><link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23c995e7'/%3E%3Ctext x='5' y='24' font-size='23' font-family='monospace'%3EG%3C/text%3E%3C/svg%3E" /><link
+      rel="stylesheet"
+      href="https://use.typekit.net/ujd7zbd.css" /><link
+      rel="stylesheet"
+      href="style.css" /></head
+  ><body
+    ><svg
+      class="signal-filters"
+      width="0"
+      height="0"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <defs>
+        <filter
+          id="pirate-wave"
+          x="-8%"
+          y="-8%"
+          width="116%"
+          height="116%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.002 0.065"
+            numOctaves="1"
+            seed="8"
+            result="wave"
+          ></feTurbulence>
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="wave"
+            scale="18"
+            xChannelSelector="R"
+            yChannelSelector="B"
+          ></feDisplacementMap>
+        </filter>
+        <filter
+          id="melt-header"
+          x="-5%"
+          y="-6%"
+          width="110%"
+          height="112%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.005 0.025"
+            numOctaves="2"
+            seed="6"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="warped"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="red"
+          />
+          <feOffset in="red" dx="1" dy="0" result="r" />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="green"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            result="blue"
+          />
+          <feOffset in="blue" dx="-1" dy="0" result="b" />
+          <feBlend in="r" in2="green" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" />
+        </filter>
+        <filter
+          id="melt-player"
+          x="-5%"
+          y="-6%"
+          width="110%"
+          height="112%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.005 0.025"
+            numOctaves="2"
+            seed="6"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="warped"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="red"
+          />
+          <feOffset in="red" dx="1" dy="0" result="r" />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="green"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            result="blue"
+          />
+          <feOffset in="blue" dx="-1" dy="0" result="b" />
+          <feBlend in="r" in2="green" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" />
+        </filter>
+        <filter
+          id="melt-motion"
+          x="-5%"
+          y="-6%"
+          width="110%"
+          height="112%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.005 0.025"
+            numOctaves="2"
+            seed="6"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="warped"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="red"
+          />
+          <feOffset in="red" dx="1" dy="0" result="r" />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="green"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            result="blue"
+          />
+          <feOffset in="blue" dx="-1" dy="0" result="b" />
+          <feBlend in="r" in2="green" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" />
+        </filter>
+        <filter
+          id="melt-history"
+          x="-5%"
+          y="-6%"
+          width="110%"
+          height="112%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.005 0.025"
+            numOctaves="2"
+            seed="7"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="warped"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="red"
+          />
+          <feOffset in="red" dx="1" dy="0" result="r" />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="green"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            result="blue"
+          />
+          <feOffset in="blue" dx="-1" dy="0" result="b" />
+          <feBlend in="r" in2="green" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" />
+        </filter>
+        <filter
+          id="melt-footer"
+          x="-5%"
+          y="-6%"
+          width="110%"
+          height="112%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.005 0.025"
+            numOctaves="2"
+            seed="6"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="warped"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="red"
+          />
+          <feOffset in="red" dx="1" dy="0" result="r" />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="green"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            result="blue"
+          />
+          <feOffset in="blue" dx="-1" dy="0" result="b" />
+          <feBlend in="r" in2="green" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" />
+        </filter>
+        <filter
+          id="melt-dialog"
+          x="-5%"
+          y="-6%"
+          width="110%"
+          height="112%"
+          color-interpolation-filters="sRGB"
+        >
+          <feTurbulence
+            type="fractalNoise"
+            baseFrequency="0.005 0.025"
+            numOctaves="2"
+            seed="6"
+            result="noise"
+          />
+          <feDisplacementMap
+            in="SourceGraphic"
+            in2="noise"
+            scale="3"
+            xChannelSelector="R"
+            yChannelSelector="G"
+            result="warped"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="red"
+          />
+          <feOffset in="red" dx="1" dy="0" result="r" />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0"
+            result="green"
+          />
+          <feColorMatrix
+            in="warped"
+            type="matrix"
+            values="0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0"
+            result="blue"
+          />
+          <feOffset in="blue" dx="-1" dy="0" result="b" />
+          <feBlend in="r" in2="green" mode="screen" result="rg" />
+          <feBlend in="rg" in2="b" mode="screen" />
+        </filter>
+      </defs></svg
+    ><div class="signal-interference" aria-hidden="true"></div>
+    <header
+      ><a class="brand" href="#" aria-label="Gata Pirata, inicio"
+        ><img
+          class="brand-logo"
+          src="gatapirata.png"
+          alt="Gata Pirata"
+          width="240"
+          height="190" /><img
+          class="logo-glitch glitch-one"
+          src="gatapirata.png"
+          alt=""
+          aria-hidden="true" /><img
+          class="logo-glitch glitch-two"
+          src="gatapirata.png"
+          alt=""
+          aria-hidden="true" /></a
+      ><div class="frequency-badge"
+        >88.9 FM</div
+      ></header
+    >
+    <main
+      ><div class="layout"
+        ><section class="player panel"
+          ><div class="section-label"
+            >REPRODUCIENDO <span id="onair">EN PAUSA</span></div
+          ><div class="record"
+            ><div class="vinyl" id="vinyl"
+              ><div class="record-label"
+                ><img
+                  class="vinyl-logo"
+                  src="gatapirata.png"
+                  alt="Gata Pirata" /></div></div></div
+          ><div class="songline"
+            ><div
+              ><h2 id="title">Señal de prueba</h2
+              ><button
+                class="artist-link"
+                id="artist"
+                aria-haspopup="dialog"
+                aria-controls="artistDialog"
+                title="Ver información de la banda"
+                >Gata Pirata · demo sintetizada ↗</button
+              ></div
+            ><button
+              id="fav"
+              class="icon"
+              aria-label="Guardar en favoritos"
+              aria-pressed="false"
+              >☆</button
+            ></div
+          ><div class="timeline"
+            ><progress id="progress" value="0" max="1"></progress
+            ><div
+              ><span id="elapsed">0:00</span
+              ><span id="duration">0:16</span></div
+            ></div
+          ><div class="transport"
+            ><button class="play" id="play">▶ Escuchar</button
+            ><button id="next" class="icon" aria-label="Siguiente canción"
+              >↠</button
+            ><label class="volume"
+              >Volumen<input
+                id="volume"
+                type="range"
+                min="0"
+                max="1"
+                step=".01"
+                value=".7" /></label></div
+          ><p class="note playback-note">Prueba de audio local</p></section
+        >
+        <section class="motion panel"
+          ><div class="section-label"
+            >MOVIMIENTO <span id="sourceStatus">SIMULADOR</span></div
+          ><div class="tempo"
+            ><strong id="bpm">100</strong
+            ><span>BPM EST.<br /><small id="rate">1.00×</small></span></div
+          ><p id="mood" class="motion-mood">Paseando</p
+          ><label for="movement">Intensidad del movimiento</label
+          ><input id="movement" type="range" min="0" max="100" value="43" /><div
+            class="range-label"
+            ><span>Quieto</span><span>En movimiento</span
+            ><span>¡Miau!</span></div
+          ><button id="meow" class="meow"> Maullar</button
+          ><p id="feedback" role="status" aria-live="polite"></p
+          ><button
+            id="openConnection"
+            class="quiet-action"
+            aria-haspopup="dialog"
+            >Conectar báculo</button
+          ><details class="motion-help"
+            ><summary>Cómo responde</summary
+            ><p class="note"
+              >Quieto: 0.85×. En movimiento: hasta 1.20×. Una sacudida intensa
+              activa el maullido, con 3 segundos entre sonidos. La velocidad
+              también cambia el tono.</p
+            ></details
+          ></section
+        ></div
+      >
+      <section class="panel history-panel"
+        ><div class="history-heading"
+          ><h2>Historial</h2
+          ><button id="openUpload" aria-haspopup="dialog"
+            >+ Agregar canción</button
+          ></div
+        ><ol id="history"
+          ><li class="note">Aquí aparecerá lo que escuches.</li></ol
+        ></section
+      >
+      <div class="build-projects">
+        <section class="panel build-project" id="radio-patito" aria-labelledby="radio-patito-title">
+          <p class="section-label">HAZLO TÚ MISMO <span class="coming-soon">PRÓXIMAMENTE</span></p>
+          <h2 id="radio-patito-title">Arma tu Radio Patito</h2>
+          <p>La radio también se construye. Aquí compartiremos los esquemas, la lista de componentes y una guía paso a paso para que armes tu propio Radio Patito.</p>
+          <p class="build-materials">Esquemas · Componentes · Guía de armado</p>
+          <p class="note">Un proyecto con espíritu open source: aprender cómo funciona, experimentar y compartir tus propias versiones.</p>
+        </section>
+        <section class="panel build-project" id="arma-tu-baculo" aria-labelledby="baculo-title">
+          <p class="section-label">HAZLO TÚ MISMO <span class="coming-soon">PRÓXIMAMENTE</span></p>
+          <h2 id="baculo-title">Arma tu báculo</h2>
+          <p>Construye un báculo que convierta tu movimiento en música. Aquí compartiremos los planos, las conexiones y las instrucciones para armarlo y conectarlo a Gata Pirata.</p>
+          <p class="build-materials">Planos · Conexiones · Guía de armado</p>
+          <p class="note">Hecho para explorar en comunidad: construir, modificar y compartir lo que descubras.</p>
+        </section>
+      </div>
+      <p class="build-sharing">Crear, aprender y compartir. Publicaremos estos proyectos con enfoque open source y sus guías y esquemas bajo Creative Commons. Cada material indicará su licencia al publicarse.</p>
+      <p class="build-sharing">
+        <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/LMTR.pdf" target="_blank" rel="noopener noreferrer">Consulta la legislación sobre el uso del espectro radioeléctrico en México (PDF, abre en otra pestaña)</a>.
+        Ley en Materia de Telecomunicaciones y Radiodifusión · Cámara de Diputados.
+      </p>
+      </main
+    ><footer
+      >GATA PIRATA CC 2026 <span>Una estación que sale a caminar.</span></footer
+    ><dialog
+      id="artistDialog"
+      aria-labelledby="artistName"
+      aria-describedby="artistBio"
+      ><button id="closeDialog" class="icon" aria-label="Cerrar">×</button
+      ><p class="section-label">CONOCE A LA BANDA</p><h2 id="artistName"></h2
+      ><p id="artistBio"></p></dialog
+    ><dialog id="uploadDialog" aria-labelledby="uploadHeading"
+      ><button
+        class="dialog-close icon"
+        data-close="uploadDialog"
+        aria-label="Cerrar"
+        >×</button
+      ><h2 id="uploadHeading">Agrega tu canción</h2
+      ><form id="uploadForm"
+        ><label for="uploadTitle">Título de la canción</label
+        ><input
+          id="uploadTitle"
+          required
+          maxlength="160"
+          placeholder="Nombre de la canción" /><label for="uploadArtist"
+          >Banda / artista</label
+        ><input
+          id="uploadArtist"
+          required
+          maxlength="160"
+          placeholder="Nombre de la banda" /><label for="uploadBio"
+          >Descripción de la banda</label
+        ><textarea
+          id="uploadBio"
+          required
+          maxlength="2000"
+          rows="4"
+          placeholder="Su historia, de dónde viene y qué música hace."
+        ></textarea
+        ><label class="upload" for="files"
+          >Archivo de audio<input
+            id="files"
+            type="file"
+            accept="audio/*"
+            required /></label
+        ><p
+          id="bpmAnalysis"
+          class="analysis-status"
+          role="status"
+          aria-live="polite"
+          >El BPM se calculará al seleccionar el archivo.</p
+        ><button id="addTrack" type="submit" disabled>Agregar canción</button
+        ><p id="uploadStatus" class="note" role="status"></p></form
+      ><p class="note"
+        >Los datos quedan fijos al agregar la canción y se conservan durante
+        esta sesión.</p
+      ><details
+        ><summary>Sobre el BPM</summary
+        ><p class="note"
+          >Es una estimación automática: puede detectar la mitad o el doble del
+          pulso. Si no encuentra un ritmo claro, podrás escuchar la canción
+          igualmente.</p
+        ></details
+      ></dialog
+    ><dialog id="connectionDialog" aria-labelledby="connectionHeading"
+      ><button
+        class="dialog-close icon"
+        data-close="connectionDialog"
+        aria-label="Cerrar"
+        >×</button
+      ><h2 id="connectionHeading">Conectar báculo</h2
+      ><label for="endpoint">Dirección del WebSocket</label
+      ><input
+        id="endpoint"
+        type="url"
+        placeholder="wss://tu-puente.example/imu"
+      /><div class="connect-actions"
+        ><button id="connect">Conectar ESP32</button
+        ><button id="disconnect" disabled>Desconectar</button></div
+      ><p id="connection" role="status">Sin conexión al sensor.</p
+      ><details
+        ><summary>Guía para el equipo de electrónica</summary
+        ><p
+          >Enviar de 10 a 20 mensajes por segundo, con una intensidad
+          normalizada entre 0 y 1:</p
+        ><pre>{"motion":0.65}</pre
+        ><p
+          >La ESP32 debe calcular esa intensidad a partir de aceleración sin
+          gravedad y/o giros, con umbrales calibrados. No enviar aceleración
+          cruda en este campo.</p
+        ><p
+          >Desde esta página HTTPS se necesita <b>wss://</b> con certificado
+          válido o un puente seguro. Un servidor <b>ws://192.168…</b> puede
+          bloquearse por contenido mixto.</p
+        ><p
+          >Para una prueba directa en la misma Wi-Fi, sirve estos archivos por
+          HTTP desde la ESP32 u otro servidor local y usa su dirección ws://. No
+          desactives la seguridad del navegador.</p
+        ><p
+          >Si no llegan datos durante 2 segundos, el audio vuelve gradualmente a
+          1×. La conexión real requiere firmware compatible; esta página no lo
+          instala.</p
+        ><a href="index.html" download="index.html">Descargar HTML</a> ·
+        <a href="app.js" download>JavaScript</a> ·
+        <a href="style.css" download>CSS</a> ·
+        <a href="bpm-worker.js" download>Analizador BPM</a></details
+      ></dialog
+    ><script src="app.js"></script
+    ><script src="signal-effects.js"></script></body
+></html>
