@@ -20,7 +20,7 @@ const tracks = [
     title: 'Señal de prueba',
     artist: 'Gata Pirata · demo sintetizada',
     bpm: 100,
-    bio: 'Instrumental generada para probar el báculo. No representa a un grupo real. Carga canciones de los artistas para preparar tu selección.',
+    bio: 'Instrumental generada. Carga tus canciones para salir a las calles.',
     buffer: null,
   },
 ];
