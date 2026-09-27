@@ -1465,7 +1465,7 @@ dialog:focus-within {
   }
 }
 
-/* Tipografía de títulos solicitada. */
+/* Tipografía de títulos. */
 h1,
 h2,
 h3,
@@ -1543,5 +1543,12 @@ header {
 @media (max-width: 760px) {
   .build-projects {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 1600px) {
+  .brand {
+    width: 60vw;
+    max-width: 1200px;
   }
 }
